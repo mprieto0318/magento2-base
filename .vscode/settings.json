@@ -1,0 +1,45 @@
+{
+    // ⚡ Mejora el rendimiento ignorando carpetas pesadas
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/var/**": true,
+        "**/pub/static/**": true,
+        "**/generated/**": true,
+        "**/vendor/**": true
+    },
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/var": true,
+        "**/pub/static": true,
+        "**/generated": true,
+        "**/vendor": true
+    },
+
+    // 🛠️ Configuración de WSL
+    "remote.WSL.fileWatcher.polling": true,
+    "remote.WSL.fileWatcher.pollingInterval": 2000,
+    "remote.autoForwardPorts": false,
+
+    // 🖋️ Forzar LF para evitar problemas con Git y Magento
+    "files.eol": "\n",
+
+    // 💡 Mejoras de editor
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": false,
+
+    // 🚀 Evitar que la indexación de búsqueda se coma toda la CPU
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/var": true,
+        "**/pub/static": true,
+        "**/generated": true,
+        "**/vendor": true
+    },
+
+    // 🔍 PHP IntelliSense optimizado
+    "intelephense.files.maxSize": 5000000,
+    "intelephense.environment.includePaths": [
+        "/var/www/magento/vendor"
+    ]
+}

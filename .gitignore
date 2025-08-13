@@ -1,0 +1,12 @@
+/app/etc/env.php
+/var/
+/pub/media/
+/pub/static/
+/generated/
+/vendor/
+/node_modules/
+/composer.lock
+*.log
+*.zip
+*.tar
+*.sql
