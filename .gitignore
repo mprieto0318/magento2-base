@@ -5,6 +5,7 @@
 /generated/
 /vendor/
 /node_modules/
+/dev/
 /composer.lock
 *.log
 *.zip

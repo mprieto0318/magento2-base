@@ -8,6 +8,7 @@
     ],
     "config": {
         "allow-plugins": {
+            "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "laminas/laminas-dependency-plugin": true,
             "magento/*": true,
@@ -18,9 +19,10 @@
     },
     "version": "2.4.8",
     "require": {
+        "cweagans/composer-patches": "^1.7",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "^2.0.4",
-        "magento/product-community-edition": "2.4.8",
+        "magento/product-community-edition": "2.4.8-p2",
         "mageplaza/magento-2-spanish-language-pack": "dev-master",
         "mageplaza/module-smtp": "^4.7"
     },
@@ -44,18 +46,19 @@
         }
     },
     "require-dev": {
-        "magento/magento-allure-phpunit": "^3.0.2",
+        "allure-framework/allure-phpunit": "^3.1",
+        "carlos-mg89/oauth": "^0.8.17",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7 || ^1.0",
         "dg/bypass-finals": "^1.4",
         "friendsofphp/php-cs-fixer": "^3.22",
-        "carlos-mg89/oauth": "^0.8.17",
         "magento/magento-coding-standard": "*",
         "magento/magento2-functional-testing-framework": "^5.0",
         "pdepend/pdepend": "3.x-dev",
         "phpmd/phpmd": "3.x-dev",
         "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^10.5",
-        "symfony/finder": "^6.4"
+        "symfony/finder": "^6.4",
+        "magento/magento-allure-phpunit": "^3.0.2"
     },
     "conflict": {
         "gene/bluefoot": "*"
@@ -79,6 +82,11 @@
         }
     ],
     "extra": {
-        "magento-force": "override"
+        "magento-force": "override",
+        "patches": {
+            "magento/framework": {
+                "Fix str_replace null param warning": "m2-hotfix/MDVA-FIX-STR_REPLACE_NULL/patch.diff"
+            }
+        }
     }
 }

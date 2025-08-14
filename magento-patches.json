@@ -1,0 +1,8 @@
+{
+    "MDVA-FIX-STR_REPLACE_NULL": {
+        "patches": {
+            "magento/framework": "m2-hotfix/MDVA-FIX-STR_REPLACE_NULL/patch.diff"
+        },
+        "description": "Evita el error deprecado de str_replace con null en PHP 8.1+"
+    }
+}
