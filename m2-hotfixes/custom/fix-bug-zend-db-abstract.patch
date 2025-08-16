@@ -1,0 +1,25 @@
+From 1b678065bed42fb935975551ca4b268824b01e78 Mon Sep 17 00:00:00 2001
+From: mprieto <prieto.miguel0318@gmail.com>
+Date: Wed, 13 Aug 2025 21:34:58 -0500
+Subject: [PATCH] Fix bug Deprecated Functionality: str_replace()
+
+---
+ library/Zend/Db/Adapter/Abstract.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/library/Zend/Db/Adapter/Abstract.php b/library/Zend/Db/Adapter/Abstract.php
+index 239f0b7..cce055d 100644
+--- a/library/Zend/Db/Adapter/Abstract.php
++++ b/library/Zend/Db/Adapter/Abstract.php
+@@ -1041,7 +1041,7 @@ abstract class Zend_Db_Adapter_Abstract
+     {
+         if ($auto === false || $this->_autoQuoteIdentifiers === true) {
+             $q = $this->getQuoteIdentifierSymbol();
+-            return ($q . str_replace("$q", "$q$q", $value) . $q);
++            return ($q . str_replace("$q", "$q$q", $value ?? '') . $q);
+         }
+         return $value;
+     }
+-- 
+2.34.1
+

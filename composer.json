@@ -84,8 +84,8 @@
     "extra": {
         "magento-force": "override",
         "patches": {
-            "magento/framework": {
-                "Fix str_replace null param warning": "m2-hotfix/MDVA-FIX-STR_REPLACE_NULL/patch.diff"
+            "magento/zend-db": {
+                "Fix bug Deprecated Functionality: str_replace()": "m2-hotfixes/custom/fix-bug-zend-db-abstract.patch"
             }
         }
     }
