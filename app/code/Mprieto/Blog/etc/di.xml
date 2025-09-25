@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Mprieto\Blog\Api\Data\BlogInterface" type="Mprieto\Blog\Model\Blog" />
+    <preference for="Mprieto\Blog\Api\BlogRepositoryInterface" type="Mprieto\Blog\Service\BlogRepository" />
+    <preference for="Mprieto\Blog\Api\BlogManagementInterface" type="Mprieto\Blog\Service\BlogManagement" />
+    <preference for="Mprieto\Blog\Api\Data\BlogSearchResultsInterface" type="Mprieto\Blog\Model\BlogSearchResults" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mprieto_blog_blog_listing_data_source" xsi:type="string">Mprieto\Blog\Model\ResourceModel\Blog\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mprieto\Blog\Model\ResourceModel\Blog\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mprieto_blog</argument>
+            <argument name="eventPrefix" xsi:type="string">mprieto_blog_blog_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">blog_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Mprieto\Blog\Model\ResourceModel\Blog</argument>
+        </arguments>
+    </type>
+</config>

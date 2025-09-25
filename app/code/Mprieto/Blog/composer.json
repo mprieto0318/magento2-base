@@ -1,0 +1,28 @@
+{
+  "name": "mprieto/blog",
+  "description": "Custom module mprieto_blog & comments",
+  "require": {
+    "php": "~7.0.0|~7.1.0|~7.2.0|~7.3.0|~8.1|~8.2|~8.3"
+  },
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "MPRIETO",
+      "email": "prieto.miguel0318@gmail.com",
+      "homepage": "https://www.linkedin.com/in/mprieto0318/"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Mprieto\\Blog\\": ""
+    }
+  }
+}
