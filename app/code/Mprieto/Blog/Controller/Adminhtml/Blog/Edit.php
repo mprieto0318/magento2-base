@@ -46,11 +46,11 @@ class Edit extends Action
             $blog = $this->blogFactory->create();
         }
 
-        $editOrNew = ($blog->getId()) ? $blog->getName() : __('New Blog');
+        $title = ($blog->getId()) ? $blog->getName() : 'Edit Blog';
         $page->setActiveMenu('Mprieto_Blog::blog');
         $page->addBreadcrumb(__('Blogs'), __('Blogs'));
-        $page->addBreadcrumb($editOrNew, $editOrNew);
-        $page->getConfig()->getTitle()->prepend($editOrNew);
+        $page->addBreadcrumb($title, $title);
+        $page->getConfig()->getTitle()->prepend($title);
 
         return $page;
     }

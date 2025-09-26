@@ -37,6 +37,8 @@
         <column xsi:type="smallint" name="status" nullable="false" default="1" comment="Comment Status"/>
         <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Blog Modification Time"/>
 
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="comment_id"/>

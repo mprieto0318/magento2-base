@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mprieto_blog_comments_listing.mprieto_blog_comments_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <!--<buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Blog </label>
+            </button>
+        </buttons>-->
+        <spinner>mprieto_blog_comments_columns</spinner>
+        <deps>
+            <dep>mprieto_blog_comments_listing.mprieto_blog_comments_listing_data_source</dep>
+        </deps>
+    </settings>
+<!--   
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mprieto_blog_comments_listing.mprieto_blog_comments_listing_data_source</item>
+            <item name="deps" xsi:type="string">mprieto_blog_comments_listing.mprieto_blog_comments_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">mprieto_blog_comments_columns</item>
+        <item name="buttons" xsi:type="array"/>
+    </argument>
+-->
+
+<!--
+    <dataSource name="mprieto_blog_comments_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">mprieto_blog_comments_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">comment_id</argument>
+            <argument name="requestFieldName" xsi:type="string">comment_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+            </argument>
+        </argument>
+        <dataProvider class="Mprieto\Blog\Model\ResourceModel\Comments\Grid\Collection"
+                      name="mprieto_blog_comments_listing_data_source"/>
+    </dataSource>
+-->
+
+    <dataSource name="mprieto_blog_comments_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">comment_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Mprieto_Blog::blog</aclResource>
+        <dataProvider class="Mprieto\Blog\Ui\Grid\Comments\Component\DataProvider" name="mprieto_blog_comments_listing_data_source">
+            <settings>
+                <requestFieldName>blog_id</requestFieldName>
+                <primaryFieldName>comment_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <columns name="mprieto_blog_comments_columns">
+        <column name="comment_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="customer_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Customer ID</label>
+            </settings>
+        </column>
+        <column name="comment">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Comment</label>
+            </settings>
+        </column>
+        <column name="status">
+            <settings>
+                <filter>select</filter>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="created_at">
+            <settings>
+                <filter>dateRange</filter>
+                <label translate="true">Created At</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

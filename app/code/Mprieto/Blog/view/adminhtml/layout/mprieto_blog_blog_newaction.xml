@@ -3,7 +3,6 @@
     <body>
         <referenceContainer name="content">
             <uiComponent name="mprieto_blog_form" />
-            <uiComponent name="mprieto_blog_comments_listing" />
         </referenceContainer>
     </body>
 </page>

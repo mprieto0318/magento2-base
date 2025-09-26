@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- BLOG -->
     <preference for="Mprieto\Blog\Api\Data\BlogInterface" type="Mprieto\Blog\Model\Blog" />
     <preference for="Mprieto\Blog\Api\BlogRepositoryInterface" type="Mprieto\Blog\Service\BlogRepository" />
     <preference for="Mprieto\Blog\Api\BlogManagementInterface" type="Mprieto\Blog\Service\BlogManagement" />
@@ -19,6 +20,26 @@
             <argument name="eventPrefix" xsi:type="string">mprieto_blog_blog_grid_collection</argument>
             <argument name="eventObject" xsi:type="string">blog_grid_collection</argument>
             <argument name="resourceModel" xsi:type="string">Mprieto\Blog\Model\ResourceModel\Blog</argument>
+        </arguments>
+    </type>
+
+    <!-- COMMENTS -->
+    <preference for="Mprieto\Blog\Api\Data\CommentsInterface" type="Mprieto\Blog\Model\Comments" />
+    <!--<preference for="Mprieto\Blog\Api\Data\CommentsSearchResultsInterface" type="Mprieto\Blog\Model\CommentsSearchResults" />-->
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mprieto_blog_comments_listing_data_source" xsi:type="string">Mprieto\Blog\Model\ResourceModel\Comments\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mprieto\Blog\Model\ResourceModel\Comments\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mprieto_blog_comments</argument>
+            <argument name="eventPrefix" xsi:type="string">mprieto_blog_comments_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">comments_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Mprieto\Blog\Model\ResourceModel\Comments</argument>
         </arguments>
     </type>
 </config>

@@ -12,8 +12,17 @@ class NewAction extends Action
 
     public function execute()
     {
-        return $this->resultFactory->create(ResultFactory::TYPE_FORWARD)
-            ->forward('edit');
+        /** @var Page $page */
+        $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+
+        $page->setActiveMenu('Mprieto_Blog::blog');
+        $page->addBreadcrumb(__('Blogs'), __('Blogs'));
+        $page->addBreadcrumb(__('New Blog'), __('New Blog'));
+        $page->getConfig()->getTitle()->prepend(__('New Blog'));
+
+        return $page;
+        //return $this->resultFactory->create(ResultFactory::TYPE_FORWARD)
+        //    ->forward('edit');
 
     }
 
