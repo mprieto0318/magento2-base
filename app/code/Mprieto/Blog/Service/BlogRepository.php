@@ -12,6 +12,10 @@ use Mprieto\Blog\Model\BlogFactory;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Mprieto\Blog\Model\Comments;
+use Mprieto\Blog\Model\CommentsFactory;
+use Mprieto\Blog\Model\ResourceModel\Comments as CommentsResource;
+use Mprieto\Blog\Model\ResourceModel\Comments\CollectionFactory as CommentsCollectionFactory;
 
 class BlogRepository implements BlogRepositoryInterface
 {
@@ -27,6 +31,9 @@ class BlogRepository implements BlogRepositoryInterface
         private readonly CollectionFactory $blogCollectionFactory,
         private readonly CollectionProcessorInterface $blogCollectionProcessor,
         private readonly BlogSearchResultsInterfaceFactory $blogSearchResultsFactory,
+        protected CommentsResource $commentsResource,
+        protected CommentsFactory $commentsFactory,
+        protected CommentsCollectionFactory $commentsCollectionFactory
     )
     {
 
@@ -70,6 +77,32 @@ class BlogRepository implements BlogRepositoryInterface
     }
 
     /**
+     * @param int $blogId
+     * @return \Mprieto\Blog\Api\Data\BlogInterface
+     * @throws NoSuchEntityException
+     */
+    public function getByIdComments(int $blogId): BlogInterface
+    {
+        $blog = $this->blogFactory->create();
+        $this->blogResource->load($blog, $blogId);
+        if(!$blog->getId()) {
+            throw new NoSuchEntityException(__('The blog with id %1 does not exist.', $blogId));
+        }
+
+        $collection = $this->commentsCollectionFactory->create();
+        $collection->addFieldToFilter('blog_id', $blogId);
+
+        $commentsData = [];
+        foreach ($collection as $comment) {
+            $commentsData[] = $comment->getData();
+        }
+
+        $blog->setComments($commentsData);
+
+        return $blog;
+    }
+
+    /**
      * @param $blogId
      * @return bool
      * @throws NoSuchEntityException
@@ -91,6 +124,19 @@ class BlogRepository implements BlogRepositoryInterface
         /** @var BlogSearchResultsInterface $searchResults */
         $searchResults = $this->blogSearchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
+
+        foreach ($collection->getItems() as $item) {
+            $commentsCollection = $this->commentsCollectionFactory->create();
+            $commentsCollection->addFieldToFilter('blog_id', $item->getId());
+
+            $commentsData = [];
+            foreach ($commentsCollection as $comment) {
+                $commentsData[] = $comment->getData();
+            }
+
+            $item->setComments($commentsData);
+        }
+
         $searchResults->setItems($collection->getItems());
         $searchResults->setTotalCount($collection->getSize());
         return $searchResults;

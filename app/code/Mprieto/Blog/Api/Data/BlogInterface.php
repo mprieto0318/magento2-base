@@ -84,4 +84,15 @@ interface BlogInterface
      */
     public function setStoreId(int $storeId);
 
+    /**
+     * @return \Mprieto\Blog\Api\Data\CommentsInterface[]|null
+     */
+    public function getComments();
+
+    /**
+     * @param \Mprieto\Blog\Api\Data\CommentsInterface[] $comments
+     * @return $this
+     */
+    public function setComments(array $comments);
+
 }

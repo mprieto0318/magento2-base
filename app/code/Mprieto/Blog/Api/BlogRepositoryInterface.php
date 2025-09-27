@@ -25,6 +25,12 @@ interface BlogRepositoryInterface
 
     /**
      * @param int $blogId
+     * @return \Mprieto\Blog\Api\Data\BlogInterface
+     */
+    public function getByIdComments(int $blogId): BlogInterface;
+
+    /**
+     * @param int $blogId
      * @return bool true on success
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\Exception\LocalizedException

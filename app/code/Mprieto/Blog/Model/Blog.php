@@ -13,6 +13,7 @@ class Blog extends \Magento\Framework\Model\AbstractModel implements BlogInterfa
     private const CREATED_AT = 'created_at';
     private const UPDATED_AT = 'updated_at';
     private const STORE_ID = 'store_id';
+    private const COMMENTS = 'comments';
 
     protected function _construct() {
         $this->_eventPrefix = 'mprieto_blog';
@@ -137,4 +138,20 @@ class Blog extends \Magento\Framework\Model\AbstractModel implements BlogInterfa
         $this->setData(self::STORE_ID, $storeId);
     }
 
+    /**
+     * @return array
+     */
+    public function getComments()
+    {
+        return $this->_getData(self::COMMENTS);
+    }
+
+    /**
+     * @param array $comments
+     * @return $this
+     */
+    public function setComments(array $comments)
+    {
+        return $this->setData(self::COMMENTS, $comments);
+    }
 }
